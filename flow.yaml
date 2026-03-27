@@ -1,0 +1,53 @@
+version: 1.0
+name: Sample
+description: Sample Flow Definition
+fields: [ name, age, status ]
+groups: [ ADMIN, REQUESTER, REVIEWER ]
+hooks:
+  - type: before
+    bean: validationHook
+    onAction: [ next, prev, altr ]
+  - type: after
+    bean: notificationHook
+flows:
+  fl-001:
+    name: Draft
+    description: Draft a new application
+    action:
+      next:
+        label: Submit
+        target: fl-002
+        authorities: [ ADMIN, REQUESTER ]
+    access:
+      ADMIN: all
+      REQUESTER: >
+        v_name, e_name, v_age, e_age, v_status
+        v_name, e_name, v_age, e_age, v_status
+        v_name, e_name, v_age, e_age, v_status
+    attributes:
+      stage: Draft
+      progress: 0%
+      emailSubject: Application Submitted
+      emailRecipients: john@example.com, emely@example.com
+  fl-002:
+    name: Review
+    description: Review an application
+    action:
+      next:
+        label: Approve
+        target: fl-003
+        authorities: [ ADMIN, REVIEWER ]
+      prev:
+        label: Return
+        authorities: [ ADMIN, REVIEWER ]
+      altr:
+        label: Request Change
+        target: fl-004
+        authorities: [ ADMIN, REVIEWER ]
+    access:
+      ADMIN: all
+      REVIEWER: v_name, v_age, v_age, v_status
+      REQUESTER: v_name, v_age, v_age, v_status
+    attributes:
+      stage: Review
+      progress: 50%
