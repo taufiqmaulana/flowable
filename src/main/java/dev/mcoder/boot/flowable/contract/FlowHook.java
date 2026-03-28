@@ -1,10 +1,10 @@
 package dev.mcoder.boot.flowable.contract;
 
 import dev.mcoder.boot.flowable.FlowInterruptedException;
-import dev.mcoder.boot.flowable.model.FlowDefinition;
-import dev.mcoder.boot.flowable.model.FlowStatus;
+import dev.mcoder.boot.flowable.model.SchemaFlowDefinition;
+import dev.mcoder.boot.flowable.model.SchemaFlowStatus;
 
-public interface FlowableHook {
+public interface FlowHook {
 
 
     /**
@@ -15,6 +15,6 @@ public interface FlowableHook {
      * <br>
      * When the hook is called before status update (type: before), throw a {@link FlowInterruptedException} to interrupt the flow.
      */
-    void onFlow(FlowDefinition flow, FlowStatus before, FlowStatus after) throws FlowInterruptedException;
+    void onFlow(SchemaFlowDefinition flow, SchemaFlowStatus before, SchemaFlowStatus after) throws FlowInterruptedException;
 
 }

@@ -4,10 +4,10 @@ import lombok.Data;
 import java.util.Map;
 
 @Data
-public class FlowStatus {
+public class SchemaFlowStatus {
     private String name;
     private String description;
-    private Map<ValidAction, FlowAction> action;
+    private Map<ValidAction, SchemaFlowAction> action;
     private Map<String, String> access;
     private Map<String, String> attributes;
 }

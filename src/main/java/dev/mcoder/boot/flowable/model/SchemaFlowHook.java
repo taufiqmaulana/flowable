@@ -4,7 +4,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class FlowHook {
+public class SchemaFlowHook {
     private String type;
     private String bean;
     private List<String> onAction;

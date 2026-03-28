@@ -2,7 +2,7 @@ package dev.mcoder.boot.flowable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import dev.mcoder.boot.flowable.model.FlowDefinition;
+import dev.mcoder.boot.flowable.model.SchemaFlowDefinition;
 import dev.mcoder.boot.flowable.model.ValidAction;
 import org.junit.jupiter.api.Test;
 import java.io.File;
@@ -13,7 +13,7 @@ class FlowYamlTest {
     @Test
     void testParseYaml() throws Exception {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        FlowDefinition flowDefinition = mapper.readValue(new File("flow.yaml"), FlowDefinition.class);
+        SchemaFlowDefinition flowDefinition = mapper.readValue(new File("flow.yaml"), SchemaFlowDefinition.class);
 
         assertNotNull(flowDefinition);
         assertEquals("1.0", flowDefinition.getVersion());
